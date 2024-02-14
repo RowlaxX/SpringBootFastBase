@@ -60,8 +60,8 @@ public abstract class BaseUser extends BaseEntity implements UserDetails {
 	/*
 	 * Verification
 	 */
-	private boolean emailVerified = true;
-	private boolean phoneVerified = false;
+	private boolean emailVerified = !BaseUserService.VERIFY_EMAIL;
+	private boolean phoneVerified = !BaseUserService.VERIFY_PHONE;
 	
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)

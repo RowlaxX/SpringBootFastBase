@@ -1,0 +1,14 @@
+{
+	"properties": [
+		{
+			"name": "fr.rowlaxx.user.verify.email",
+			"type": "boolean",
+			"description": "Should new user verify the email ?"
+		},
+		{
+			"name": "fr.rowlaxx.user.verify.phone",
+			"type": "boolean",
+			"description": "Should new user verify the phone number ?"
+		}
+	]
+}
