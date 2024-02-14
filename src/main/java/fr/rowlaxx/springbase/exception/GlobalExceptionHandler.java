@@ -14,6 +14,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.csrf.CsrfException;
+import org.springframework.transaction.TransactionSystemException;
 import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import jakarta.persistence.RollbackException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.AllArgsConstructor;
 
@@ -135,7 +137,7 @@ public class GlobalExceptionHandler {
 			msg = "Required request body is missing";
 		if (msg.startsWith("JSON parse error: "))
 			msg = "JSON parse error";
-		
+		exception.printStackTrace();
 		return response(BAD_REQUEST, msg);
 	}
 	
@@ -224,5 +226,16 @@ public class GlobalExceptionHandler {
 	public <T> ResponseEntity<T> handle(Exception exception) {
 		exception.printStackTrace();
 		return response(INTERNAL_SERVER_ERROR, "Unknown error");
+	}
+	
+	@ExceptionHandler
+	public <T> ResponseEntity<T> handle(TransactionSystemException exception){
+		if (exception.getCause() instanceof RollbackException re && re.getCause() instanceof ConstraintViolationException cve) {
+			cve.printStackTrace();
+			return handle(cve);
+		}
+		
+		exception.printStackTrace();
+		return response(INTERNAL_SERVER_ERROR, "A database error occured");
 	}
 }
