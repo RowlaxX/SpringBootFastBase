@@ -1,16 +1,14 @@
 package fr.rowlaxx.springbase.user.bannedreason;
 
-import fr.rowlaxx.springbase.core.ExpirableEntity;
+import fr.rowlaxx.springbase.jpa.ExpirableEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @Entity
-@ToString(callSuper = true)
 public class BannedReason extends ExpirableEntity {
 		
 	@Column(nullable = false, length = 512)

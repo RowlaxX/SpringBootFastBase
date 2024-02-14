@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import fr.rowlaxx.springbase.core.BaseEntity;
+import fr.rowlaxx.springbase.jpa.BaseEntity;
 import fr.rowlaxx.springbase.user.bannedreason.BannedReason;
 import fr.rowlaxx.springbase.user.resetpassword.ResetPasswordCode;
 import fr.rowlaxx.springbase.user.verification.VerificationCode;
@@ -21,13 +21,11 @@ import jakarta.persistence.ElementCollection;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.OneToOne;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class BaseUser extends BaseEntity implements UserDetails {
 	private static final long serialVersionUID = -8939910233142484381L;

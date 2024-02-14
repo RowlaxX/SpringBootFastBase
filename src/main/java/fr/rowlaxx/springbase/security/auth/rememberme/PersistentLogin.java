@@ -6,18 +6,16 @@ import org.apache.tomcat.util.buf.HexUtils;
 import org.springframework.security.core.token.Sha512DigestUtils;
 import org.springframework.security.crypto.encrypt.AesBytesEncryptor;
 
-import fr.rowlaxx.springbase.core.ExpirableEntity;
+import fr.rowlaxx.springbase.jpa.ExpirableEntity;
 import fr.rowlaxx.utils.Utils;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@Getter
+@Setter
 public class PersistentLogin extends ExpirableEntity {
 	
 	@Column(nullable = false)

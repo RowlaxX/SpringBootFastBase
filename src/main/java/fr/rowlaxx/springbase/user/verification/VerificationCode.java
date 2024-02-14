@@ -2,17 +2,15 @@ package fr.rowlaxx.springbase.user.verification;
 
 import java.util.Random;
 
-import fr.rowlaxx.springbase.core.ExpirableEntity;
+import fr.rowlaxx.springbase.jpa.ExpirableEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @Entity
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
 public class VerificationCode extends ExpirableEntity {
 	private static final Random RANDOM = new Random();
 	private static final int MAX_ATTEMPT = 3;

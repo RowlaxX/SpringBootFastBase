@@ -2,17 +2,15 @@ package fr.rowlaxx.springbase.user.resetpassword;
 
 import java.util.UUID;
 
-import fr.rowlaxx.springbase.core.ExpirableEntity;
+import fr.rowlaxx.springbase.jpa.ExpirableEntity;
 import fr.rowlaxx.utils.Utils;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@Getter
+@Setter
 @Entity
 public class ResetPasswordCode extends ExpirableEntity {
 	
