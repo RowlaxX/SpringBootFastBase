@@ -85,7 +85,7 @@ public class ResetPasswordCodeService {
 
 		var reset = findValidCodeByValue(cookie);
 		var userUuid = reset.getUserUuid();
-		var user = userRepo.findByUuid(userUuid);
+		var user = (BaseUser) userRepo.findByUuid(userUuid);
 		if (user == null)
 			throw new InternalException("No user found");
 		
