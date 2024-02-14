@@ -4,7 +4,6 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -31,13 +30,12 @@ public class BaseEntity {
 
 	@Column(updatable = false, nullable = false)
 	@JsonProperty(access = Access.READ_ONLY)
-	@CreatedDate
-	private Instant createdDate;
+	private Instant createdDate = Instant.now();
 
 	@Column(nullable = false)
 	@JsonProperty(access = Access.READ_ONLY)
 	@LastModifiedDate
-	private Instant lastModifiedDate;
+	private Instant lastModifiedDate = Instant.now();
 	
 	
 	public BaseEntity(UUID uuid) {
