@@ -6,16 +6,16 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import fr.rowlaxx.springbase.validation.validators.RawPasswordValidator;
+import fr.rowlaxx.springbase.validation.validators.UniqueEntitiesValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 @Documented
-@Constraint(validatedBy = RawPasswordValidator.class)
+@Constraint(validatedBy = UniqueEntitiesValidator.class)
 @Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.METHOD, ElementType.LOCAL_VARIABLE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface RawPassword {
-	String message() default "must contains minimum eight characters, at least one letter, one number and one special character";
+public @interface UniqueEntities {
+	String message() default "must not contains duplicate entities uuid";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }
